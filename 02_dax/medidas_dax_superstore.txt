@@ -1,0 +1,125 @@
+============================================================
+PROYECTO: Análisis de Ventas Retail - Superstore
+ARCHIVO: medidas_dax_superstore.txt
+AUTOR: Carlos Hernández Godoy
+AÑO: 2025
+
+DESCRIPCIÓN:
+  Diccionario de medidas DAX utilizadas en el modelo de Power BI
+  para el análisis de ventas, rentabilidad, segmentos de clientes
+  y comportamiento temporal (YTD, LY, variaciones).
+============================================================
+
+
+------------------------------
+SECCIÓN 1 - MEDIDAS BASE
+------------------------------
+
+-- Ventas Totales
+-- Suma de todas las ventas del modelo filtradas por contexto.
+Ventas Totales =
+SUM ( FACT_Superstore[Sales] )
+
+
+-- Utilidad Total
+-- Suma de la utilidad (profit) filtrada por contexto.
+Utilidad Total =
+SUM ( FACT_Superstore[Profit] )
+
+
+-- Unidades Vendidas
+-- Cantidad total de unidades vendidas.
+Unidades Vendidas =
+SUM ( FACT_Superstore[Quantity] )
+
+
+-- Descuento Promedio
+-- Promedio del descuento aplicado en los pedidos.
+Descuento Promedio =
+AVERAGE ( FACT_Superstore[Discount] )
+
+
+-- Número de Pedidos
+-- Conteo de órdenes únicas.
+Número de Pedidos =
+DISTINCTCOUNT ( FACT_Superstore[Order ID] )
+
+
+-- Número de Clientes
+-- Número de clientes únicos en el modelo.
+Número de Clientes =
+DISTINCTCOUNT ( FACT_Superstore[Customer ID] )
+
+
+-- Margen %
+-- Relación entre utilidad total y ventas totales.
+Margen % =
+DIVIDE ( [Utilidad Total], [Ventas Totales] )
+
+
+-- Ticket Promedio
+-- Venta promedio por pedido.
+Ticket Promedio =
+DIVIDE ( [Ventas Totales], [Número de Pedidos] )
+
+
+
+------------------------------
+SECCIÓN 2 - INTELIGENCIA DE TIEMPO
+------------------------------
+-- Nota: Estas medidas utilizan la tabla DIM_Calendar,
+-- relacionada con FACT_Superstore[Order Date].
+
+
+-- Ventas YTD (Year To Date)
+-- Ventas acumuladas desde el inicio del año hasta la fecha actual del filtro.
+Ventas YTD =
+TOTALYTD (
+    [Ventas Totales],
+    DIM_Calendar[Date]
+)
+
+
+-- Ventas Año Anterior (LY)
+-- Ventas del mismo periodo pero en el año anterior.
+Ventas LY =
+CALCULATE (
+    [Ventas Totales],
+    SAMEPERIODLASTYEAR ( DIM_Calendar[Date] )
+)
+
+
+-- Variación Ventas vs Año Anterior (absoluta)
+Variación Ventas LY =
+[Ventas Totales] - [Ventas LY]
+
+
+-- Variación Ventas vs Año Anterior (%)
+Variación Ventas LY % :=
+DIVIDE ( [Variación Ventas LY], [Ventas LY] )
+
+
+-- Utilidad YTD
+-- Utilidad acumulada desde el inicio del año hasta la fecha actual del filtro.
+Utilidad YTD =
+TOTALYTD (
+    [Utilidad Total],
+    DIM_Calendar[Date]
+)
+
+
+-- Utilidad Año Anterior
+-- Utilidad del mismo periodo en el año anterior.
+Utilidad LY =
+CALCULATE (
+    [Utilidad Total],
+    SAMEPERIODLASTYEAR ( DIM_Calendar[Date] )
+)
+
+
+-- Variación Utilidad vs Año Anterior (%)
+Variación Utilidad LY % =
+DIVIDE (
+    [Utilidad Total] - [Utilidad LY],
+    [Utilidad LY]
+)
