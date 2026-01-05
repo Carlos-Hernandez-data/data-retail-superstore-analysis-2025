@@ -27,6 +27,7 @@ El enfoque combina **SQL**, **modelado de datos**, **DAX** y **Power BI**, repli
 - Medidas DAX documentadas (`02_dax/medidas_dax_superstore.txt`)
 
 ## Estructura del repositorio
+```
 data-retail-superstore-analysis-2025/
 ├── 01_data/ (superstore_raw.csv)
 ├── 02_dax/ (medidas_dax_superstore.txt)
@@ -34,7 +35,7 @@ data-retail-superstore-analysis-2025/
 ├── 04_pbix/ (superstore-retail-dashboard.pbix)
 ├── 05_sql/ (sql_modelado_y_analisis_superstore.sql)
 └── 06_README.md
-
+```
 ## Datos utilizados
 - **Fuente:** Superstore Dataset (Kaggle)  
 - **Periodo:** 2014 – 2017  
