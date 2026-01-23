@@ -39,12 +39,6 @@ Descuento Promedio =
 AVERAGE ( FACT_Superstore[Discount] )
 
 
--- Número de Pedidos
--- Conteo de órdenes únicas.
-Número de Pedidos =
-DISTINCTCOUNT ( FACT_Superstore[Order ID] )
-
-
 -- Número de Clientes
 -- Número de clientes únicos en el modelo.
 Número de Clientes =
@@ -59,8 +53,8 @@ DIVIDE ( [Utilidad Total], [Ventas Totales] )
 
 -- Ticket Promedio
 -- Venta promedio por pedido.
-Ticket Promedio =
-DIVIDE ( [Ventas Totales], [Número de Pedidos] )
+Ticket Promedio = 
+DIVIDE ( SUM (FACT_Superstore[Sales]), SUM (FACT_Superstore[Quantity]) )
 
 
 

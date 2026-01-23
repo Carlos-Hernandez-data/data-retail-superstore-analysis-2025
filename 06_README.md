@@ -68,7 +68,7 @@ Este enfoque permite análisis de tiempo (YTD/YoY), filtros eficientes y un mode
 
 ## Métricas clave (DAX)
 - Ventas Totales, Utilidad Total, Margen %
-- Nº de Pedidos, Nº de Clientes, Ticket Promedio
+- Nº de Clientes, Ticket Promedio
 - Ventas YTD, Ventas LY, Variaciones interanuales
 
 (Ver `02_dax/medidas_dax_superstore.txt`)
