@@ -29,11 +29,11 @@ El enfoque combina **SQL**, **modelado de datos**, **DAX** y **Power BI**, repli
 ## Estructura del repositorio
 ```
 data-retail-superstore-analysis-2025/
-├── 01_data/ (superstore_raw.csv)
-├── 02_dax/ (medidas_dax_superstore.txt)
-├── 03_img/ (resumen_ejecutivo_dashboard.png)
-├── 04_pbix/ (superstore-retail-dashboard.pbix)
-├── 05_sql/ (sql_modelado_y_analisis_superstore.sql)
+├── 01_data/superstore_raw.csv
+├── 02_dax/medidas_dax_superstore.txt
+├── 03_img/resumen_ejecutivo_dashboard.png
+├── 04_pbix/superstore-retail-dashboard.pbix
+├── 05_sql/sql_modelado_y_analisis_superstore.sql
 └── 06_README.md
 ```
 ## Datos utilizados
